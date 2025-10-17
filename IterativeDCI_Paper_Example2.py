@@ -72,8 +72,7 @@ def iterative_DCI(Q_pred_vals, observed_densities, num_epochs=1, r_init=1,
                 rs[:,d,k] = r_current
                 if np.abs(np.mean(r_current)-1.0)>ratio_tol:
                     print('Outside of ratio tolerance at epoch #', k+1, ' iteration #', d+1)
-                    flag = 1  # Flag that these results should not be trusted
-                    return rs[:,:d+1,:k+1], k+1, d+1, kl_from_observed_marginal[:,k], flag
+                    return rs[:,:d+1,:k+1], k+1, d+1, kl_from_observed_marginal[:,k]
                 pbar.update(100/(len(QoI_spaces)*num_epochs))
             
             for d in range(len(QoI_spaces)):
@@ -88,48 +87,45 @@ def iterative_DCI(Q_pred_vals, observed_densities, num_epochs=1, r_init=1,
             
             if all( kl < KL_tol for kl in kl_from_observed_marginal[:,k]):
                 print('KL divergences from observed marginals all within tolerance at epoch #', k+1)
-                flag=0
-                return rs[:,:,:k+1], k+1, d+1, kl_from_observed_marginal, flag
+                return rs[:,:,:k+1], k+1, d+1, kl_from_observed_marginal
             
             if k>0:
                 kl_relative_update = np.abs(kl_from_observed_marginal[:,k-1] - kl_from_observed_marginal[:,k]) /\
                                     kl_from_observed_marginal[:,k-1]
                 if all(kl_rel < KL_update_rel_tol for kl_rel in kl_relative_update):
                     print('KL divergences from observed marginals are not sufficiently updated at epoch #', k+1)
-                    flag=0
-                    return rs[:,:,:k+1], k+1, d+1, kl_from_observed_marginal, flag
-    flag = 0
-    return rs, k+1, d+1, kl_from_observed_marginal, flag
+                    return rs[:,:,:k+1], k+1, d+1, kl_from_observed_marginal
+    return rs, k+1, d+1, kl_from_observed_marginal
 
 
 # In[ ]:
 
 
 # Initial and predicted samples
-# Assume the data files are named as follows: initial_inputs2.dat and predicted_output2.dat
+# Assume the data files are named as follows: initial_inputs.dat and predicted_output.dat
 
 num_init_samples = int(1e4)
 
-params_init = np.loadtxt('initial_input2.dat') # param samples, samples x dim
+params_init = np.loadtxt('initial_input.dat') # param samples, samples x dim
 
 params_init = params_init[0:num_init_samples,:]
 
 param_dim = params_init.shape[1]
 
-Q_pred_vals = np.loadtxt('predicted_output2.dat') # QoI samples, samples x dim
+Q_pred_vals = np.loadtxt('predicted_output.dat') # QoI samples, samples x dim
 
 Q_pred_vals = Q_pred_vals[0:num_init_samples,:]
 
 # Data generating and observed samples
-# Assume the data files are named as follows: datagen_input2.dat and datagen_output2.dat
+# Assume the data files are named as follows: datagen_input.dat and datagen_output.dat
 
 num_dg_samples = int(1e4)
 
-params_dg = np.loadtxt('datagen_input2.dat')
+params_dg = np.loadtxt('datagen_input.dat')
 
 params_dg = params_dg[0:num_dg_samples,:]
 
-Q_obs_vals = np.loadtxt('datagen_output2.dat')
+Q_obs_vals = np.loadtxt('datagen_output.dat')
 
 Q_obs_vals = Q_obs_vals[0:num_dg_samples,:]
 
@@ -201,7 +197,7 @@ observed_densities = []
 for d in range(len(QoI_spaces)):
     observed_densities.append(GKDE(Q_obs_vals_scaled[:,QoI_spaces[d]].T))
 
-rs, last_epoch, last_iter, kl_epochs, flag = iterative_DCI(Q_pred_vals_scaled, observed_densities, 
+rs, last_epoch, last_iter, kl_epochs = iterative_DCI(Q_pred_vals_scaled, observed_densities, 
                                            num_epochs = num_epochs, r_init = 1, ratio_tol=0.1,
                                                     QoI_spaces = QoI_spaces, KL_tol=1e-6) 
 
@@ -400,7 +396,7 @@ observed_densities = []
 for d in range(len(QoI_spaces)):
     observed_densities.append(GKDE(Q_obs_vals_scaled[:,QoI_spaces[d]].T))
 
-rs, last_epoch, last_iter, kl_epochs, flag = iterative_DCI(Q_pred_vals_scaled, observed_densities, 
+rs, last_epoch, last_iter, kl_epochs = iterative_DCI(Q_pred_vals_scaled, observed_densities, 
                                            num_epochs = num_epochs, r_init = 1, ratio_tol=0.1,
                                                     QoI_spaces = QoI_spaces, KL_tol=1e-6) 
 
