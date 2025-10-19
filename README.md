@@ -1,9 +1,18 @@
 # Iterative-DCI
-Iterative Approach to Data Consistent Inversion
 
-Instructions to Reproduce PDE-based Example:
-The data-files associated with the PDE-based example are very large so we don't include them in this repository.
-Instead, we provide these instructions for reproducing them yourself.
+This repo contains examples demonstrating an iterative approach to data-consistent inversion (DCI). 
+
+## Example 1: Linear QoI
+
+Executing either the Jupyter notebook or the Python script in the `Example-1-Linear` directory will generate all the data as well as the figures shown in the example of Section 6.1 of a recently completed manuscript on iterative DCI.
+
+## Example 2: A Higher-Dimensional PDE-based Example
+
+This example requires generating data associated with a single-phase incompressible flow model with a 100-dimensional parameter space defined by a truncated Karhunen-Lo\`{e}ve expansion of the log transformation of the permeability field. Instructions on generating the data with MrHyDE are given below. After these data are obtained, executing either the Jupyter notebook or the Python script in the `Example-2-PDE` directory will generate all the figures shown in Example 6.2 of a recently completely manuscript on iterative DCI.
+
+### Instructions to Reproduce PDE-based Example:
+Due to the large size of the data-files associated with the PDE-based example, they are omitted in this repository.
+Instead, we provide these instructions for reproducing them.
 The results are generated using MrHyDE, which is an open source C++ package for solving multiscale/multiphysics systems.
 See: https://github.com/sandialabs/MrHyDE
 
@@ -33,4 +42,4 @@ Once you have Trilinos and MrHyDE built, link to MrHyDE (or put it on your path)
 Next, regenerate the data-generating data:
 ./mrhyde input-datagen.yaml
 
-From here, you have everything you need to run the python scripts and recreate the results in the paper.
+From here, you have everything you need to run either the Jupyter notebook or the Python script and recreate the results in the paper.
