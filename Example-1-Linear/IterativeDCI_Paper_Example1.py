@@ -476,8 +476,8 @@ for i in range(total_iters):
 
 fig5 = plt.figure(num=5)
 fig5.clf()
-plt.plot(np.arange(1, total_iters+1), kl_from_observed_marginal[:,0], label='QoI #1')
-plt.plot(np.arange(1, total_iters+1), kl_from_observed_marginal[:,1], c='k',
+plt.semilogy(np.arange(1, total_iters+1), kl_from_observed_marginal[:,0], label='QoI #1')
+plt.semilogy(np.arange(1, total_iters+1), kl_from_observed_marginal[:,1], c='k',
            ls=':',label='QoI #2')
 plt.title('KL divergence in data spaces')
 plt.xlabel('Iteration #')
