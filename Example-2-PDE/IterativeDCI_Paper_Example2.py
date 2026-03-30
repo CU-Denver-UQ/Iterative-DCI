@@ -223,8 +223,9 @@ def plot_Qs(fignum, iter_num):
         ax = fig.add_subplot(gs[0+2*row:2+2*row:,0+2*(d%3):2+2*(d%3)])
         pred_dens = GKDE(Q_pred_vals_scaled[:,QoI_spaces[d]], weights=rs[:, (iter_num-1) % num_QoI, (iter_num-1) // num_QoI])
         plt_Qs = np.linspace(-2.5, 2.5, 101)
-        ax.plot(plt_Qs, pred_dens(plt_Qs), linestyle=':')
-        ax.plot(plt_Qs, observed_densities[d](plt_Qs))
+        ax.plot(plt_Qs, pred_dens(plt_Qs), linestyle=':', label='PF of Update')
+        ax.plot(plt_Qs, observed_densities[d](plt_Qs), label='Observed')
+        ax.legend()
         if d == 1:
             title_str = 'Epoch: ' + str((iter_num-1) // num_QoI +1) +\
                         ', Iter: ' + str((iter_num-1) % num_QoI + 1)
