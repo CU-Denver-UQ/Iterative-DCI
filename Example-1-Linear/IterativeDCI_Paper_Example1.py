@@ -297,7 +297,7 @@ def plot_epoch(fignum, epoch_num, observed_densities, fix_cbar_ranges=False):
     title_str = '2nd iter. of epoch ' + str(epoch_num)
     ax2.set_title(title_str)
     ax2.set_xlabel(r'$\lambda_1$')
-    ax2.set_ylabel(r'$\lambda_1$')
+    ax2.set_ylabel(r'$\lambda_2$')
     plt.colorbar(scatter2, ax=ax2, fraction=0.046, pad=0.04)
     
     if num_QoI==3:
@@ -308,7 +308,7 @@ def plot_epoch(fignum, epoch_num, observed_densities, fix_cbar_ranges=False):
         ax3.set_aspect('equal', adjustable='box')
         ax3.set_title('3rd iter. of epoch ' + str(epoch_num))
         ax3.set_xlabel(r'$\lambda_1$')
-        ax3.set_ylabel(r'$\lambda_1$')
+        ax3.set_ylabel(r'$\lambda_2$')
         plt.colorbar(scatter3, ax=ax3, fraction=0.046, pad=0.04)
 
         ax5 = fig.add_subplot(gs[1,0:2])
@@ -352,7 +352,7 @@ def plot_epoch(fignum, epoch_num, observed_densities, fix_cbar_ranges=False):
         ax4.set_aspect('equal', adjustable='box')
         ax4.set_title('KDE of DG')
         ax4.set_xlabel(r'$\lambda_1$')
-        ax4.set_ylabel(r'$\lambda_1$')
+        ax4.set_ylabel(r'$\lambda_2$')
         plt.colorbar(scatter4, ax=ax4, fraction=0.046, pad=0.04)
     
         ax5 = fig.add_subplot(gs[1,0:3])
@@ -540,7 +540,7 @@ scatter2 = ax2.scatter(plotting_params[:,0], plotting_params[:,1],
 ax2.set_aspect('equal', adjustable='box')
 ax2.set_title('KDE of DG')
 ax2.set_xlabel(r'$\lambda_1$')
-ax2.set_ylabel(r'$\lambda_1$')
+ax2.set_ylabel(r'$\lambda_2$')
 plt.colorbar(scatter2, ax=ax2, fraction=0.046, pad=0.04)
 
 ax5 = fig.add_subplot(gs[1,0:3])
@@ -604,7 +604,7 @@ scatter2 = ax2.scatter(plotting_params[:,0], plotting_params[:,1],
 ax2.set_aspect('equal', adjustable='box')
 ax2.set_title('KDE of DG')
 ax2.set_xlabel(r'$\lambda_1$')
-ax2.set_ylabel(r'$\lambda_1$')
+ax2.set_ylabel(r'$\lambda_2$')
 plt.colorbar(scatter2, ax=ax2, fraction=0.046, pad=0.04)
 
 ax5 = fig.add_subplot(gs[1,0:3])
