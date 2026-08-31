@@ -66,4 +66,4 @@ Executing the Jupyter notebook `CT+iDCI_paper_example_2.ipynb` will recreate the
 
 ### Example 3: Enriching Feasible Sets with Asynchronous Experiments
 
-Executing the Jupyter notebook `CT+iDCI_paper_example_3.ipynb` will create the numerical results associated with Section 6.3 in the paper. Datasets are loaded from the `example_d_data` directory. The [`LUQ`](https://github.com/CU-Denver-UQ/LUQ/) package needs to be installed to execute this notebook.
+Executing the Jupyter notebook `CT+iDCI_paper_example_3.ipynb` will create the numerical results associated with Section 6.3 in the paper. Datasets are loaded from the `example_3_data` directory. The [`LUQ`](https://github.com/CU-Denver-UQ/LUQ/) package needs to be installed to execute this notebook.
