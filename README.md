@@ -8,7 +8,7 @@ The examples coincide with two papers:
   - [arXiv version](https://arxiv.org/abs/2603.00033)
   - [Published version in International Journal of Uncertainty Quantification, Vol. 16, Issue 3, 2026, pp. 27-60](https://www.dl.begellhouse.com/journals/52034eb04b657aea,430a9ab664b7b491,22309ac560989c09.html)
 - Copula Transformations for Data-Consistent Inversion:
-  - arXiv version (posting soon)
+  - [arXiv version](https://arxiv.org/abs/2609.02832)
 
 ## Examples for the iDCI-paper
 
